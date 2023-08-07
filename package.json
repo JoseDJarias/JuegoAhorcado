@@ -1,0 +1,19 @@
+{
+  "name": "juegoahorcado",
+  "version": "1.0.0",
+  "description": "Hangman Game Project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JoseDJarias/JuegoAhorcado.git"
+  },
+  "author": "Jose Daniel Arias Jaén",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JoseDJarias/JuegoAhorcado/issues"
+  },
+  "homepage": "https://github.com/JoseDJarias/JuegoAhorcado#readme"
+}
