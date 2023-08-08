@@ -1,0 +1,41 @@
+header{
+    display: flex;
+    justify-content: center;
+}
+/* styles for the panel class */
+.panel{
+    margin: 0 auto;
+    width:fit-content;
+    height: 200px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.lowbar-style{
+    font-size:xx-large;
+    margin-right: 15px;
+}
+/* styles for the panel class */
+
+/* styles for the keyboard class */
+.keyboard-style{
+    margin: 0 auto;
+    display: flex; 
+    flex-wrap: wrap;
+    justify-content: center; 
+    width: 500px;
+    height: 300px;
+}
+.keyboard-div{
+    width: 60px;
+    height: 60px;
+}
+
+.keyboard-buttons{
+    width: 50px;
+    height: 50px;
+    font-size: large;
+    /* border: 1px none; */
+    
+}
+/* styles for the keyboard class */
