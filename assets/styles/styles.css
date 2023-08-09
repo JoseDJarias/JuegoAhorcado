@@ -47,3 +47,10 @@ header{
 .wrong-letter{
     background-color: red;
 }
+
+
+/* image  */
+.image-container{
+    height: 300px;
+    width: 400px;
+}
