@@ -2,8 +2,22 @@ import { Panel } from "./PanelClass.js";
 import { Keyboard } from "./Keyboard.js";
 
 
-let a = new Keyboard();
-a.createKeyboard();
+// instance class panel 
+let panel = new Panel();
+// instance class keyboard
+let keyboard = new Keyboard();
 
-let prueba = new Panel('csharp');
-prueba.showPanel();
+
+panel.showPanel();
+keyboard.createKeyboard();
+
+const button = document.querySelectorAll('.keyboard-buttons');
+button.forEach((button) =>{
+button.addEventListener('click',() =>{
+    if (panel.showCorrect(button.textContent)) {
+        button.classList.add('correct-letter');
+    }else button.classList.add('wrong-letter');
+    
+})
+})
+

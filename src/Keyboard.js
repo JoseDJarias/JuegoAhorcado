@@ -1,7 +1,7 @@
+
 class Keyboard{
     constructor(){
         this.keys = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','Ñ','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
-        this.word = '';
     }
     
     createKeyboard(){   
@@ -18,13 +18,6 @@ class Keyboard{
         });
     }
 
-    showCorrect(letter){
-        return this.word.includes(letter);
-    }
-    
-    showIncorrect(letter){
-        return !this.word.includes(letter);
-    }
     
 
 }
