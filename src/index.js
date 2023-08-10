@@ -39,10 +39,11 @@ function handlerLetterClick(button) {
         panel.updatePanel(newStatus);
     }
     if (!isLetterCorrect) {
+        let attemps = parseInt(document.querySelector('.attemps-counter').textContent);
         bodyparts.updateImg();
-        let attemps = document.querySelector('.attemps-counter').textContent;
-       
-        bodyparts.updateImg(0);
+        bodyparts.updateImg(attemps);
+        attemps++;
+        document.querySelector('.attemps-counter').textContent =attemps;
 
     }
     // faltan los intentos

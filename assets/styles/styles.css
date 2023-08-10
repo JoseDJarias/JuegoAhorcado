@@ -50,7 +50,20 @@ header{
 
 
 /* image  */
+.image-container-father{
+    height: 300px;
+    width: 800px;
+    margin: 0 auto;
+}
+
 .image-container{
+    margin-left: 180px ;
     height: 300px;
     width: 400px;
+    visibility: visible;
+}
+
+.hide-image{
+    height: 0px;
+    width: 0px;
 }
