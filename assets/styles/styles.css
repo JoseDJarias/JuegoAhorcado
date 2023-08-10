@@ -1,73 +1,91 @@
-header{
+header {
     display: flex;
     justify-content: center;
 }
+
 /* styles for the panel class */
-.panel{
+.panel {
     margin: 0 auto;
-    width:fit-content;
+    width: fit-content;
     height: 100px;
     display: flex;
     justify-content: space-evenly;
 }
 
-.lowbar-style{
-    font-size:xx-large;
+.lowbar-style {
+    font-size: xx-large;
     margin-right: 15px;
 }
+
 /* styles for the panel class */
 
 /* styles for the keyboard class */
-.keyboard-style{
+.keyboard-style {
     margin: 0 auto;
-    display: flex; 
+    display: flex;
     flex-wrap: wrap;
-    justify-content: center; 
+    justify-content: center;
     width: 500px;
     height: 300px;
+    /* padding: 6px; */
+    padding-top:20px;
+    background: rgba( 255, 231, 210, 0.8 );
+box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+backdrop-filter: blur( 8px );
+-webkit-backdrop-filter: blur( 8px );
+border-radius: 10px;
+border: 1px solid rgba( 255, 255, 255, 0.18 );
 }
-.keyboard-div{
+
+.keyboard-div {
     width: 60px;
     height: 60px;
 }
 
-.keyboard-buttons{
+.keyboard-buttons {
     width: 50px;
     height: 50px;
     font-size: large;
-    /* border: 1px none; */
-    
+    background: rgba( 255, 231, 210, 1 );
+    /* box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 ); */
+    backdrop-filter: blur( 8px );
+    -webkit-backdrop-filter: blur( 8px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 9 );
+
 }
+
 /* styles for the keyboard class */
 
 
-.correct-letter{
+.correct-letter {
     background-color: aquamarine;
 }
-.wrong-letter{
+
+.wrong-letter {
     background-color: red;
 }
 
 
 /* image  */
-.image-container-father{
+.image-container-father {
     height: 300px;
     width: 800px;
     margin: 0 auto;
 }
 
-.image-container{
-    margin-left: 180px ;
+.image-container {
+    margin-left: 180px;
     height: 300px;
     width: 400px;
     visibility: visible;
 }
 
-.hide-image{
+.hide-image {
     height: 0px;
     width: 0px;
 }
 
-.attemps-counter{
+.attemps-counter {
     visibility: hidden;
 }

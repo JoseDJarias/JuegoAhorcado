@@ -41,9 +41,7 @@ class HangmanGame {
 
         }
             return this.textArray;
-        // if (!this.textArray.includes("_")) {
-        // }
-        // console.log(this.textArray);
+   
     }
     setStatus() {
 
