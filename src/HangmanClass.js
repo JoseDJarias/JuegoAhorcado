@@ -53,8 +53,10 @@ class HangmanGame {
 
 
     }
-    checkIfPlayerLost() {
-
+    checkIfPlayerLost(attemps) {
+        if (attemps>=6) {
+            console.log('Juego terminado');
+        }
     }
 
 }

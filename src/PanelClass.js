@@ -1,4 +1,3 @@
-import { HangmanGame } from "./HangmanClass.js";
 
 class Panel {
 
@@ -6,9 +5,6 @@ class Panel {
     }
     
     createPanel(word) {
-        // let hangmangame = new HangmanGame();
-        // let randomWord = hangmangame.startGame();
-        // console.log('Prueba en panel',randomWord);
         for (let index = 0; index < word.length; index++) {
             let lowBar = document.createElement('p');
             lowBar.textContent = '_';
@@ -31,26 +27,6 @@ class Panel {
         }
      
     }
-
-    // showCorrect(letter){
-
-    //    let str = letter.toLowerCase();
-    //    let position = this.selectedWord.search(str); 
-    //    console.log(position);
-    //     if (position >=0) {
-    //         const lowbars = document.querySelectorAll('.lowbar-style');
-    //         let newLowBars = [...lowbars];
-    //         console.log(newLowBars);
-    //         for (let index = 0; index < newLowBars.length; index++) {
-    //             newLowBars[position].textContent =str
-
-    //         }
-    //         return true;
-    //     };
-
-
-    // }
-
 
 }
 

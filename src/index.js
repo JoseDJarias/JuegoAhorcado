@@ -40,11 +40,11 @@ function handlerLetterClick(button) {
     }
     if (!isLetterCorrect) {
         let attemps = parseInt(document.querySelector('.attemps-counter').textContent);
-        bodyparts.updateImg();
+        hangmangame.checkIfPlayerLost(attemps);
         bodyparts.updateImg(attemps);
         attemps++;
         document.querySelector('.attemps-counter').textContent =attemps;
-
+        
     }
     // faltan los intentos
     // chequear si gano o no
