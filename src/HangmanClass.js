@@ -1,20 +1,19 @@
 class HangmanGame {
     constructor() {
         this.wordsArray = ['javascript', 'coding', 'trello'];
-        this.selectedWord = '';
+        this.selectedWord = this.wordsArray[Math.floor(Math.random() * this.wordsArray.length)];
         this.textArray = [];
         this.newTextArray = [];
     }
     startGame() {
-        // probando el panel
-        return this.selectedWord = this.wordsArray[Math.floor(Math.random() * this.wordsArray.length)];
+        console.log('Start word: ',this.selectedWord);
+       return this.selectedWord;
 
     }
 
     checkLetter(letter) {
-        console.log('word: ', this.selectedWord);
+        console.log('checkletterword: ', this.selectedWord);
         let str = letter.toLowerCase();
-        console.log('wordToLower: ', str);
         let position = this.selectedWord.search(str);
         console.log('position: ', position);
         if (position >= 0) {
@@ -41,9 +40,9 @@ class HangmanGame {
             }
 
         }
-        if (!this.textArray.includes("_")) {
             return this.textArray;
-        }
+        // if (!this.textArray.includes("_")) {
+        // }
         // console.log(this.textArray);
     }
     setStatus() {

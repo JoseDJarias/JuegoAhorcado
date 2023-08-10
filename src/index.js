@@ -15,14 +15,11 @@ let keyboard = new Keyboard();
 let result = new Result();
 // instance bodyparts class
 let bodyparts = new BodyParts();
-bodyparts.updateImg(0);
 
 hangmangame.startGame();
 keyboard.createKeyboard();
 
-
-
-panel.createPanel();
+panel.createPanel(hangmangame.selectedWord);
 hangmangame.fillArrayLength();
 
 const button = document.querySelectorAll('.keyboard-buttons');
@@ -43,6 +40,10 @@ function handlerLetterClick(button) {
     }
     if (!isLetterCorrect) {
         bodyparts.updateImg();
+        let attemps = document.querySelector('.attemps-counter').textContent;
+       
+        bodyparts.updateImg(0);
+
     }
     // faltan los intentos
     // chequear si gano o no
