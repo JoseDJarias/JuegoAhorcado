@@ -38,7 +38,7 @@ function handlerLetterClick(button) {
     changeColorLetter(isLetterCorrect, letter);
     if (isLetterCorrect) {
         const newStatus = hangmangame.getStatus(letter);
-        console.log(newStatus, 'New');
+        console.log(newStatus, 'Prueba status');
         panel.updatePanel(newStatus);
     }
     if (!isLetterCorrect) {

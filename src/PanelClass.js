@@ -10,7 +10,6 @@ class Panel {
         let hangmangame = new HangmanGame();
         let randomWord = hangmangame.startGame();
         for (let index = 0; index < randomWord.length; index++) {
-
             this.lowBar.textContent = '_';
             const panel = document.querySelector('.panel')
             panel.appendChild(this.lowBar);

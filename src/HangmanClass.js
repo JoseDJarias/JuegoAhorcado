@@ -32,7 +32,6 @@ class HangmanGame {
     getStatus(letter) {
         let text = this.selectedWord;
         this.newTextArray = text.split("")
-        let e = "_"
         let lowerLetter = letter.toLowerCase();
         console.log('Prueba si hace el lower', lowerLetter);
         console.log('Letra status: ', letter);
@@ -42,7 +41,9 @@ class HangmanGame {
             }
 
         }
-        return this.textArray;
+        if (!this.textArray.includes("_")) {
+            return this.textArray;
+        }
         // console.log(this.textArray);
     }
     setStatus() {
@@ -50,10 +51,8 @@ class HangmanGame {
     }
 
     checkIfPlayerWin() {
-       for (let index = 0; index < array.length; index++) {
-        const element = array[index];
-        
-       }
+
+
     }
     checkIfPlayerLost() {
 
