@@ -13,7 +13,6 @@ class Panel {
             lowBar.className = 'lowbar-style'
             console.log('panel word',word);
         }
-
     };
 
     updatePanel(array) {
