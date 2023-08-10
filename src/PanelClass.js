@@ -1,29 +1,32 @@
+import { HangmanGame } from "./HangmanClass.js";
 
-class Panel{
-    
-    constructor(){
-       
+class Panel {
+
+    constructor() {
+        this.lowBar = document.createElement('p');
     }
 
-    createPanel(num){
-        for (let index = 0; index<num.length; index++) {
-            const lowBar = document.createElement('p');
-            lowBar.textContent = '_';
+    createPanel() {
+        let hangmangame = new HangmanGame();
+        let randomWord = hangmangame.startGame();
+        for (let index = 0; index < randomWord.length; index++) {
+
+            this.lowBar.textContent = '_';
             const panel = document.querySelector('.panel')
-            panel.appendChild(lowBar);
-            lowBar.className = 'lowbar-style'   
+            panel.appendChild(this.lowBar);
+            this.lowBar.className = 'lowbar-style'
         }
-       
+
     };
 
-    updatePanel(word){
-
+    updatePanel(word) {
+        this.lowBar.textContent = word;
     }
 
     // showCorrect(letter){
-        
+
     //    let str = letter.toLowerCase();
-    //    let position = this.selectedWord.search(str);
+    //    let position = this.selectedWord.search(str); 
     //    console.log(position);
     //     if (position >=0) {
     //         const lowbars = document.querySelectorAll('.lowbar-style');
@@ -31,15 +34,15 @@ class Panel{
     //         console.log(newLowBars);
     //         for (let index = 0; index < newLowBars.length; index++) {
     //             newLowBars[position].textContent =str
-                
+
     //         }
     //         return true;
     //     };
-        
-       
+
+
     // }
-        
+
 
 }
 
-export {Panel};
+export { Panel };

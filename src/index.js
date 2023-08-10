@@ -6,6 +6,7 @@ import { HangmanGame } from "./HangmanClass.js";
 
 // instance hangmangame
 let hangmangame = new HangmanGame();
+
 // instance class panel 
 let panel = new Panel();
 // instance class keyboard
@@ -20,34 +21,36 @@ hangmangame.startGame();
 keyboard.createKeyboard();
 
 
- 
-panel.createPanel(num);
+
+panel.createPanel();
+hangmangame.fillArrayLength();
 
 const button = document.querySelectorAll('.keyboard-buttons');
-button.forEach((button) =>{
-button.addEventListener('click',() =>{
-   handlerLetterClick();
-
-    
-});
+button.forEach((button) => {
+    button.addEventListener('click', () => {
+        handlerLetterClick(button);
+    });
 });
 
 function handlerLetterClick(button) {
     let letter = button.textContent;
     const isLetterCorrect = hangmangame.checkLetter(letter);
-    changeColorLetter(isLetterCorrect,letter);
-    const newStatus = hangmangame.getStatus();
-    panel.updatePanel(newStatus);
+    changeColorLetter(isLetterCorrect, letter);
+    if (isLetterCorrect) {
+        const newStatus = hangmangame.getStatus(letter);
+        console.log(newStatus, 'New');
+        panel.updatePanel(newStatus);
+    }
     if (!isLetterCorrect) {
         bodyparts.updateImg();
-        // faltan los intentos
     }
+    // faltan los intentos
     // chequear si gano o no
 };
 
-function changeColorLetter(isCorrect,letter) {
-    if (isCorrect) {
+function changeColorLetter(isLetterCorrect, letter) {
+    if (isLetterCorrect) {
         keyboard.showCorrect(letter);
-    }else keyboard.showIncorrect(letter);
+    } else keyboard.showIncorrect(letter);
 };
 
