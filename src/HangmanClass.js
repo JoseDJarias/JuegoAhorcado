@@ -6,8 +6,8 @@ class HangmanGame {
         this.newTextArray = [];
     }
     startGame() {
-        console.log('Start word: ',this.selectedWord);
-       return this.selectedWord;
+        console.log('Start word: ', this.selectedWord);
+        return this.selectedWord;
 
     }
 
@@ -40,25 +40,26 @@ class HangmanGame {
             }
 
         }
-            return this.textArray;
-   
+        return this.textArray;
     }
+
     setStatus() {
 
     }
 
     checkIfPlayerWin() {
 
-
     }
+
     checkIfPlayerLost(attemps) {
-        if (attemps>=6) {
+        if (attemps >= 6) {
             console.log('Juego terminado');
-            alert('Juego Terminado');
-            window.location.reload();
+            let text = 'Deseas volver a jugar?'
+            if (confirm(text) == true) {
+                window.location.reload();
+            } 
         }
     }
-
 }
 
 export { HangmanGame }
