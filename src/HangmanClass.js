@@ -57,6 +57,7 @@ class HangmanGame {
             let text = 'Deseas volver a jugar?'
             if (confirm(text) == true) {
                 window.location.reload();
+                // disable the keyboard
             } 
         }
     }

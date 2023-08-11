@@ -47,7 +47,6 @@ function handlerLetterClick(button) {
         document.querySelector('.attemps-counter').textContent =attemps;
         
     }
-    // faltan los intentos
     // chequear si gano o no
 };
 
