@@ -47,8 +47,13 @@ class HangmanGame {
 
     }
 
-    checkIfPlayerWin() {
-
+    checkIfPlayerWin(letter) {
+        let x = this.getStatus(letter);
+        if (!x.includes("_")) {
+            console.log('Holaaaaaaaaaaaa');
+            alert('Has ganado')
+        }
+        console.log('CheckLetterWinnerPI', x);
     }
 
     checkIfPlayerLost(attemps) {
@@ -58,7 +63,7 @@ class HangmanGame {
             if (confirm(text) == true) {
                 window.location.reload();
                 // disable the keyboard
-            } 
+            }
         }
     }
 }
