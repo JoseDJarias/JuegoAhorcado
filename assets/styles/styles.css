@@ -6,10 +6,10 @@ header {
 /* styles for the message div and buttons */
 .message {
     width: 400px;
-    height: 300px;
+    height: 200px;
     font-size: x-large;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    line-height: 40px;
+    line-height: 38px;
 }
 
 /* styles for the message div and buttons */
@@ -38,7 +38,6 @@ header {
     justify-content: center;
     width: 500px;
     height: 300px;
-    /* padding: 6px; */
     padding-top: 20px;
     background: rgba(255, 231, 210, 0.8);
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
@@ -83,6 +82,7 @@ header {
     height: 300px;
     width: 800px;
     margin: 0 auto;
+    visibility: visible;
 }
 
 .image-container {
@@ -92,11 +92,14 @@ header {
     visibility: visible;
 }
 
-.hide-image {
+.hide-element {
     height: 0px;
     width: 0px;
+    visibility: hidden;
 }
 
 .attemps-counter {
     visibility: hidden;
+    height: 0;
+    width: 0;
 }

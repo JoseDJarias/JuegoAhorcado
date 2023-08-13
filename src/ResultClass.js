@@ -5,14 +5,14 @@ class Result {
         this.messagePlayAgain = ' Deseas jugar otra vez ?';
         this.messageContainer = document.querySelector('.message');
         this.messageParagraph = document.querySelector('.message-paragraph')
-        this.messageContainer.style.visibility = 'hidden';
+        this.messageContainer.className = 'hide-element';
         this.button1 = document.querySelector('.message-btn1')
         this.button1.textContent = 'Aceptar';
 
     }
 
     showResult(isWin, word) {
-        this.messageContainer.style.visibility = 'visible';
+        this.messageContainer.className = 'message';
         this.disableKeyboard();
         if (isWin) {
             this.messageParagraph.textContent = this.messageVictory + " " + word

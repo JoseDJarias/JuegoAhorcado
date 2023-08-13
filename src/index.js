@@ -17,11 +17,9 @@ let result = new Result();
 let bodyparts = new BodyParts();
 
 hangmangame.startGame();
-keyboard.createKeyboard();
 
-panel.createPanel(hangmangame.selectedWord);
-hangmangame.fillArrayLength();
-
+/* Select all the keyboard buttons and foreach one a event click
+ wich call a function */
 const button = document.querySelectorAll('.keyboard-buttons');
 button.forEach((button) => {
     button.addEventListener('click', () => {
@@ -56,7 +54,6 @@ function handlerLetterClick(button) {
         }
 
     }
-    // chequear si gano o no
 };
 
 function changeColorLetter(isLetterCorrect, letter) {

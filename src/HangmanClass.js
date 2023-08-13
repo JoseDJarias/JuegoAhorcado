@@ -1,14 +1,20 @@
+import { Keyboard } from "./Keyboard.js";
+import { Panel } from "./PanelClass.js";
+
 class HangmanGame {
     constructor() {
         this.wordsArray = ['javascript', 'coding', 'trello'];
         this.selectedWord = this.wordsArray[Math.floor(Math.random() * this.wordsArray.length)];
         this.textArray = [];
         this.newTextArray = [];
+        this.keyboard = new Keyboard();
+        this.panel = new Panel();
+
     }
     startGame() {
-        console.log('Start word: ', this.selectedWord);
-        return this.selectedWord;
-
+        this.keyboard.createKeyboard();
+        this.panel.createPanel(this.selectedWord);
+        this.fillArrayLength();
     }
 
     checkLetter(letter) {
@@ -54,7 +60,7 @@ class HangmanGame {
         }
         return false
     }
-    
+
     checkIfPlayerLost(attemps) {
         if (attemps >= 7) {
             console.log('Juego terminado');
