@@ -50,35 +50,18 @@ class HangmanGame {
     checkIfPlayerWin(letter) {
         let textArray = this.getStatus(letter);
         if (!textArray.includes("_")) {
-            alert('Has ganado')
-            let text = 'Deseas volver a jugar?'
-            if (!confirm(text)) {
-                let keyboardButtons = document.querySelectorAll('.keyboard-buttons')
-                keyboardButtons.forEach(function (boton) {
-                    boton.disabled = true;
-                });
-            } else {
-                window.location.reload();
-            }
-
+            return true;
         }
+        return false
     }
-
+    
     checkIfPlayerLost(attemps) {
         if (attemps >= 7) {
             console.log('Juego terminado');
-            alert('Has perdido')
-            let text = 'Deseas volver a jugar?'
-            if (!confirm(text)) {
-                let keyboardButtons = document.querySelectorAll('.keyboard-buttons')
-                keyboardButtons.forEach(function (boton) {
-                    boton.disabled = true;
-                });
-            } else {
-                window.location.reload();
-            }
+            return true
         }
+        return false
     }
 }
-
 export { HangmanGame }
+

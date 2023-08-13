@@ -3,6 +3,17 @@ header {
     justify-content: center;
 }
 
+/* styles for the message div and buttons */
+.message {
+    width: 400px;
+    height: 300px;
+    font-size: x-large;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    line-height: 40px;
+}
+
+/* styles for the message div and buttons */
+
 /* styles for the panel class */
 .panel {
     margin: 0 auto;
@@ -28,13 +39,13 @@ header {
     width: 500px;
     height: 300px;
     /* padding: 6px; */
-    padding-top:20px;
-    background: rgba( 255, 231, 210, 0.8 );
-box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-backdrop-filter: blur( 8px );
--webkit-backdrop-filter: blur( 8px );
-border-radius: 10px;
-border: 1px solid rgba( 255, 255, 255, 0.18 );
+    padding-top: 20px;
+    background: rgba(255, 231, 210, 0.8);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
 .keyboard-div {
@@ -46,12 +57,12 @@ border: 1px solid rgba( 255, 255, 255, 0.18 );
     width: 50px;
     height: 50px;
     font-size: large;
-    background: rgba( 255, 231, 210, 1 );
+    background: rgba(255, 231, 210, 1);
     /* box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 ); */
-    backdrop-filter: blur( 8px );
-    -webkit-backdrop-filter: blur( 8px );
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     border-radius: 10px;
-    border: 1px solid rgba( 255, 255, 255, 9 );
+    border: 1px solid rgba(255, 255, 255, 9);
 
 }
 

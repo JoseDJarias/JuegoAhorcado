@@ -1,22 +1,40 @@
-class Result{
-    constructor(){
-        this.messageVictory = 'Has ganado la partida ';
-        this.messageFailure = 'Has perdido la partida ';
-        this.messagePlayAgain = 'Quiere jugar otra vez ?';
+class Result {
+    constructor() {
+        this.messageVictory = 'Has ganado la partida con la letra:  ';
+        this.messageFailure = 'Has perdido la partida con la letra: ';
+        this.messagePlayAgain = ' Deseas jugar otra vez ?';
         this.messageContainer = document.querySelector('.message');
+        this.messageParagraph = document.querySelector('.message-paragraph')
+        this.messageContainer.style.visibility = 'hidden';
+        this.button1 = document.querySelector('.message-btn1')
+        this.button1.textContent = 'Aceptar';
+
     }
 
-    showResult(isWin,word){
+    showResult(isWin, word) {
+        this.messageContainer.style.visibility = 'visible';
+        this.disableKeyboard();
         if (isWin) {
-            this.messageContainer.textContent = this.messageVictory + word
-            + this.messagePlayAgain;
-            // se necesita volver a jugar otra vez
-        }else{
-            this.messageContainer.textContent = this.messageFailure + word
-            + this.messagePlayAgain;
-            // se necesita volver a jugar otra vez,investigar sobre el window.location.reload();
+            this.messageParagraph.textContent = this.messageVictory + " " + word
+                + this.messagePlayAgain;
+            this.button1.addEventListener('click', this.button1Handler)
+        } else {
+            this.messageParagraph.textContent = this.messageFailure + " " + word
+                + this.messagePlayAgain;
+            this.button1.addEventListener('click', this.button1Handler)
         }
     }
-    
+
+    disableKeyboard() {
+        let keyboardButtons = document.querySelectorAll('.keyboard-buttons')
+        keyboardButtons.forEach(function (boton) {
+            boton.disabled = true;
+        });
+    }
+
+    button1Handler() {
+        window.location.reload();
+    }
+
 }
-export{Result};
+export { Result };

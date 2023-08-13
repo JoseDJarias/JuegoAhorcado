@@ -34,18 +34,26 @@ function handlerLetterClick(button) {
     const isLetterCorrect = hangmangame.checkLetter(letter);
     changeColorLetter(isLetterCorrect, letter);
     if (isLetterCorrect) {
-        hangmangame.checkIfPlayerWin(letter);
+        button.disabled = true;
         const newStatus = hangmangame.getStatus(letter);
         console.log(newStatus, 'Prueba status');
-        panel.updatePanel(newStatus);
+        panel.updatePanel(newStatus)
+        let resultChecked = hangmangame.checkIfPlayerWin(letter);
+        if (resultChecked) {
+            result.showResult(true, hangmangame.selectedWord)
+        }
     }
     if (!isLetterCorrect) {
+        button.disabled = true;
         let attemps = parseInt(document.querySelector('.attemps-counter').textContent);
         bodyparts.updateImg(attemps);
         attemps++;
         console.log('Intentos', attemps);
         document.querySelector('.attemps-counter').textContent = attemps;
-        hangmangame.checkIfPlayerLost(attemps);
+        let resultChecked = hangmangame.checkIfPlayerLost(attemps);
+        if (resultChecked) {
+            result.showResult(false, hangmangame.selectedWord)
+        }
 
     }
     // chequear si gano o no
