@@ -48,21 +48,34 @@ class HangmanGame {
     }
 
     checkIfPlayerWin(letter) {
-        let x = this.getStatus(letter);
-        if (!x.includes("_")) {
-            console.log('Holaaaaaaaaaaaa');
+        let textArray = this.getStatus(letter);
+        if (!textArray.includes("_")) {
             alert('Has ganado')
+            let text = 'Deseas volver a jugar?'
+            if (!confirm(text)) {
+                let keyboardButtons = document.querySelectorAll('.keyboard-buttons')
+                keyboardButtons.forEach(function (boton) {
+                    boton.disabled = true;
+                });
+            } else {
+                window.location.reload();
+            }
+
         }
-        console.log('CheckLetterWinnerPI', x);
     }
 
     checkIfPlayerLost(attemps) {
-        if (attemps >= 6) {
+        if (attemps >= 7) {
             console.log('Juego terminado');
+            alert('Has perdido')
             let text = 'Deseas volver a jugar?'
-            if (confirm(text) == true) {
+            if (!confirm(text)) {
+                let keyboardButtons = document.querySelectorAll('.keyboard-buttons')
+                keyboardButtons.forEach(function (boton) {
+                    boton.disabled = true;
+                });
+            } else {
                 window.location.reload();
-                // disable the keyboard
             }
         }
     }

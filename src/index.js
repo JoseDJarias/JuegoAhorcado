@@ -41,11 +41,12 @@ function handlerLetterClick(button) {
     }
     if (!isLetterCorrect) {
         let attemps = parseInt(document.querySelector('.attemps-counter').textContent);
-        hangmangame.checkIfPlayerLost(attemps);
         bodyparts.updateImg(attemps);
         attemps++;
-        document.querySelector('.attemps-counter').textContent =attemps;
-        
+        console.log('Intentos', attemps);
+        document.querySelector('.attemps-counter').textContent = attemps;
+        hangmangame.checkIfPlayerLost(attemps);
+
     }
     // chequear si gano o no
 };
