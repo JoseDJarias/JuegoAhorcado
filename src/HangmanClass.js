@@ -1,5 +1,6 @@
 import { Keyboard } from "./Keyboard.js";
 import { Panel } from "./PanelClass.js";
+import { Result } from "./ResultClass.js";
 
 class HangmanGame {
     constructor() {
@@ -9,11 +10,14 @@ class HangmanGame {
         this.newTextArray = [];
         this.keyboard = new Keyboard();
         this.panel = new Panel();
-
+        this.result = new Result();
     }
+
     startGame() {
+        this.swalAlert();
         this.keyboard.createKeyboard();
         this.panel.createPanel(this.selectedWord);
+        this.panel.createHeartIcons();
         this.fillArrayLength();
     }
 
@@ -31,7 +35,6 @@ class HangmanGame {
         for (let index = 0; index < this.selectedWord.length; index++) {
             this.textArray.push('_')
         };
-
     }
 
     getStatus(letter) {
@@ -44,7 +47,6 @@ class HangmanGame {
             if (lowerLetter === this.newTextArray[index]) {
                 this.textArray[index] = lowerLetter
             }
-
         }
         return this.textArray;
     }
@@ -67,6 +69,22 @@ class HangmanGame {
             return true
         }
         return false
+    }
+
+    swalAlert() {
+        Swal.fire({
+            title: 'Al presionar el primer boton del teclado, inicia el cronometro',
+            width: 600,
+            padding: '3em',
+            color: '#716add',
+            background: '#fff url(https://sweetalert2.github.io/images/trees.png)',
+            backdrop: `
+            rgba(0,0,123,0.4)
+            url("https://sweetalert2.github.io/images/nyan-cat.gif")
+            left top
+            no-repeat
+            `
+        })
     }
 }
 export { HangmanGame }

@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../assets/styles/styles.css">
+
     <title>Juego Ahorcado</title>
 </head>
 
@@ -12,18 +13,35 @@
     <header>
         <h2>Juego del Ahorcado</h2>
     </header>
-    <div class="message">
-        <p class=message-paragraph></p>
-        <button class="message-btn1"></button>
+    <div class="game-container">
+
+        <div class="leftside-container">
+            <div class="image-container-father">
+                <img class="image-container" src="../assets/images/Hangman1.png" alt="Hangman images" />
+            </div>
+            <div class="attemps-counter">0</div>
+            <div class="panel"></div>
+            <div class="lives"></div>
+        </div>
+        <div class="center-container">
+            <div id="message-container" class="hide-message">
+                <p class="message-paragraph"></p>
+                <button class="message-btn1"></button>
+            </div>
+            <div class="timer-container">
+                <span>Cronometro</span>
+                <p class="timer"></p>
+            </div>
+        </div>
+        <div class="rightside-container">
+            <div class="keyboard"></div>
+
+        </div>
     </div>
-    <div class="image-container-father">
-        <img class="image-container" src="../assets/images/Hangman1.png" alt="Hangman images" />
-    </div>
-    <div class="attemps-counter">0</div>
-    <div class="panel"></div>
-    <div class="keyboard"></div>
+
 
 </body>
 <script type="module" src="../src/index.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </html>

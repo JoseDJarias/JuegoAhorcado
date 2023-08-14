@@ -16,6 +16,9 @@ let result = new Result();
 // instance bodyparts class
 let bodyparts = new BodyParts();
 
+// timer
+let startTimer;
+let timerInterval;
 hangmangame.startGame();
 
 /* Select all the keyboard buttons and foreach one a event click
@@ -28,16 +31,21 @@ button.forEach((button) => {
 });
 
 function handlerLetterClick(button) {
+    result.removeInitialAlert();
     let letter = button.textContent;
     const isLetterCorrect = hangmangame.checkLetter(letter);
     changeColorLetter(isLetterCorrect, letter);
+    if (!startTimer) {
+        startTimer = Date.now();
+        timerInterval = setInterval(updateTimer, 1000);
+    }
     if (isLetterCorrect) {
         button.disabled = true;
         const newStatus = hangmangame.getStatus(letter);
-        console.log(newStatus, 'Prueba status');
         panel.updatePanel(newStatus)
         let resultChecked = hangmangame.checkIfPlayerWin(letter);
         if (resultChecked) {
+            stopTimer();
             result.showResult(true, hangmangame.selectedWord)
         }
     }
@@ -46,15 +54,34 @@ function handlerLetterClick(button) {
         let attemps = parseInt(document.querySelector('.attemps-counter').textContent);
         bodyparts.updateImg(attemps);
         attemps++;
+        panel.updateHeartIcons(attemps)
         console.log('Intentos', attemps);
         document.querySelector('.attemps-counter').textContent = attemps;
         let resultChecked = hangmangame.checkIfPlayerLost(attemps);
         if (resultChecked) {
             result.showResult(false, hangmangame.selectedWord)
         }
+        if (attemps > 6) {
+            stopTimer();
+            console.log('Paro el timepo');
+        }
 
     }
 };
+
+function updateTimer(params) {
+    const currentTime = Date.now();
+    const elapsedTime = Math.floor((currentTime - startTimer) / 1000); // Calcular el tiempo transcurrido en segundos
+    const timer = document.querySelector('.timer')
+    timer.textContent = elapsedTime;
+    if (elapsedTime > 60) {
+        // stopTimer();
+        // result.showMessageIfPlayerRunOutOfTime();
+    }
+}
+function stopTimer(params) {
+    clearInterval(timerInterval);
+}
 
 function changeColorLetter(isLetterCorrect, letter) {
     if (isLetterCorrect) {
