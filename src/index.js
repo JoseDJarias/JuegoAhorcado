@@ -19,6 +19,7 @@ let bodyparts = new BodyParts();
 // timer
 let startTimer;
 let timerInterval;
+
 hangmangame.startGame();
 
 /* Select all the keyboard buttons and foreach one a event click
@@ -53,7 +54,7 @@ function handlerLetterClick(button) {
         button.disabled = true;
         let attemps = parseInt(document.querySelector('.attemps-counter').textContent);
         bodyparts.updateImg(attemps);
-        attemps++;
+        attemps++;  
         panel.updateHeartIcons(attemps);
         console.log('Intentos', attemps);
         document.querySelector('.attemps-counter').textContent = attemps;
@@ -72,13 +73,12 @@ function handlerLetterClick(button) {
 
 function updateTimer() {
     const currentTime = Date.now();
-    hangmangame.currentTime = currentTime;
     const elapsedTime = Math.floor((currentTime - startTimer) / 1000); // Calcular el tiempo transcurrido en segundos
     const timer = document.querySelector('.timer')
     timer.textContent = elapsedTime;
     if (elapsedTime > 60) {
-        // stopTimer();
-        // result.showMessageIfPlayerRunOutOfTime();
+        stopTimer();
+        result.showMessageIfPlayerRunOutOfTime();
     }
 }
 function stopTimer() {

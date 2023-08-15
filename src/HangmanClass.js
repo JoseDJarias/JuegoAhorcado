@@ -81,7 +81,7 @@ class HangmanGame {
 
     swalAlert() {
         Swal.fire({
-            title: 'Al presionar el primer boton del teclado, inicia el cronometro',
+            title: 'Al presionar el primer boton del teclado, inicia el cronometro \n Recuerda, tienes solo 60 segundos',
             width: 600,
             padding: '3em',
             color: '#716add',
@@ -93,14 +93,15 @@ class HangmanGame {
             no-repeat
             `
         })
-    }
+    };
 
-    /*Big changes //////////////////////////////////////////////////////////////////*/
+    /*new functionality  //////////////////////////////////////////////////////////////////*/
     saveElapsedTime() {
         const timer = parseInt(document.querySelector('.timer').textContent)
         console.log(timer);
         return timer
     }
+
     saveGame() {
         const gameData = {
             selectedWord: this.selectedWord,
@@ -173,10 +174,17 @@ class HangmanGame {
             }
         });
     }
-
-    updateElapsedTime(elapsedTime) {
+    updateElapsedTime() {
+        let  timerInterval = setInterval(this.updateTimer(this.elapsedTime), 1000);
+    }
+     updateTimer(elapsedTime) {
+        console.log('Que vergas de params me llega: ',elapsedTime);
         const timer = document.querySelector('.timer')
         timer.textContent = elapsedTime;
+        if (elapsedTime > 60) {
+            stopTimer();
+            result.showMessageIfPlayerRunOutOfTime();
+        }
     }
 
 }

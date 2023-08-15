@@ -327,8 +327,8 @@ header {
 
 @media (min-width: 1200px) {
     body {
-        margin: 0 0 0 15px;
-        width: 98%;
+        margin: 0 0 0 0px;
+        width: 100%;
         height: 700px;
     }
 
@@ -343,13 +343,13 @@ header {
     }
 
     .rightside-container {
-        width: 50%;
+        width: 55%;
         height: 500px;
         margin-right: 100px;
     }
 
     .center-container {
-        width: 20%;
+        width: 15%;
         margin-left: 10px;
 
         /* margin-right: 60px; */
