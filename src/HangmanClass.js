@@ -11,6 +11,13 @@ class HangmanGame {
         this.keyboard = new Keyboard();
         this.panel = new Panel();
         this.result = new Result();
+        this.guessedWord = [];
+        this.incorrectGuesses = 0;
+        this.remainingGuesses = 7 - this.incorrectGuesses;
+        this.selectedLetters = [];
+        this.elapsedTime = 0;
+
+
     }
 
     startGame() {
@@ -26,6 +33,7 @@ class HangmanGame {
         let str = letter.toLowerCase();
         let position = this.selectedWord.search(str);
         console.log('position: ', position);
+        this.selectedLetters.push(str);
         if (position >= 0) {
             return true;
         };
@@ -41,13 +49,13 @@ class HangmanGame {
         let text = this.selectedWord;
         this.newTextArray = text.split("")
         let lowerLetter = letter.toLowerCase();
-        console.log('Prueba si hace el lower', lowerLetter);
-        console.log('Letra status: ', letter);
         for (let index = 0; index < text.length; index++) {
             if (lowerLetter === this.newTextArray[index]) {
                 this.textArray[index] = lowerLetter
             }
         }
+        this.guessedWord = this.textArray;
+        console.log(this.guessedWord, 'Palabra adivinada');
         return this.textArray;
     }
 
@@ -86,6 +94,91 @@ class HangmanGame {
             `
         })
     }
+
+    /*Big changes //////////////////////////////////////////////////////////////////*/
+    saveElapsedTime() {
+        const timer = parseInt(document.querySelector('.timer').textContent)
+        console.log(timer);
+        return timer
+    }
+    saveGame() {
+        const gameData = {
+            selectedWord: this.selectedWord,
+            guessedWord: this.guessedWord,
+            incorrectGuesses: this.incorrectGuesses,
+            remainingGuesses: this.remainingGuesses,
+            selectedLetters: this.selectedLetters,
+            elapsedTime: this.saveElapsedTime()
+        };
+
+        localStorage.setItem('hangmanGame', JSON.stringify(gameData));
+        alert('Partida guardada.');
+    };
+    loadGame() {
+        const savedGame = localStorage.getItem('hangmanGame');
+
+        if (savedGame) {
+            const gameData = JSON.parse(savedGame);
+            this.selectedWord = gameData.selectedWord;
+            this.guessedWord = gameData.guessedWord;
+            this.incorrectGuesses = gameData.incorrectGuesses;
+            this.remainingGuesses = gameData.remainingGuesses;
+            this.selectedLetters = gameData.selectedLetters;
+            this.elapsedTime = gameData.elapsedTime;
+
+            console.log('Prueba del millon', this.elapsedTime);
+
+
+            // update the panel with the guessed word at the moment of the save
+            this.panel.updatePanel(this.guessedWord);
+            this.panel.updateHeartIcons(this.incorrectGuesses)
+
+            // update the attemps
+            let attemps = parseInt(document.querySelector('.attemps-counter').textContent);
+            attemps = this.incorrectGuesses;
+            document.querySelector('.attemps-counter').textContent = attemps
+
+            //update the keyboard
+            /*  no lo cree en la clase keyboard para evitar el error 
+                de dependencias circular y que genere
+                Maximum call stack size exceeded    */
+            this.updateKeyboard()
+
+            // update timer
+            this.updateElapsedTime(this.elapsedTime);
+
+            alert('Partida cargada.');
+        } else {
+            alert('No hay partida guardada.');
+        }
+    }
+
+    updateKeyboard() {
+        const buttons = document.querySelectorAll('.keyboard-buttons');
+        buttons.forEach(button => {
+            const letter = button.textContent.toLowerCase();
+            const isSelected = this.selectedLetters.includes(letter);
+            const isCorrect = this.selectedWord.includes(letter);
+
+            if (isSelected && !isCorrect) {
+                // Agregar la clase correct-letter si la letra está seleccionada y es correcta
+                button.classList.add('wrong-letter');
+            } else if (isSelected && isCorrect) {
+                // Agregar la clase wrong-letter si la letra está seleccionada pero es incorrecta
+                button.classList.add('correct-letter');
+            } else {
+                // Remover ambas clases si la letra no está seleccionada
+                button.classList.remove('correct-letter');
+                button.classList.remove('wrong-letter');
+            }
+        });
+    }
+
+    updateElapsedTime(elapsedTime) {
+        const timer = document.querySelector('.timer')
+        timer.textContent = elapsedTime;
+    }
+
 }
 export { HangmanGame }
 

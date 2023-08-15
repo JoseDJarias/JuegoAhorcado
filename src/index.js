@@ -42,6 +42,7 @@ function handlerLetterClick(button) {
     if (isLetterCorrect) {
         button.disabled = true;
         const newStatus = hangmangame.getStatus(letter);
+        console.log('new Status HAHAHAH:', newStatus);
         panel.updatePanel(newStatus)
         let resultChecked = hangmangame.checkIfPlayerWin(letter);
         if (resultChecked) {
@@ -54,9 +55,10 @@ function handlerLetterClick(button) {
         let attemps = parseInt(document.querySelector('.attemps-counter').textContent);
         bodyparts.updateImg(attemps);
         attemps++;
-        panel.updateHeartIcons(attemps)
+        panel.updateHeartIcons(attemps);
         console.log('Intentos', attemps);
         document.querySelector('.attemps-counter').textContent = attemps;
+        hangmangame.incorrectGuesses = attemps;
         let resultChecked = hangmangame.checkIfPlayerLost(attemps);
         if (resultChecked) {
             result.showResult(false, hangmangame.selectedWord)
@@ -69,8 +71,9 @@ function handlerLetterClick(button) {
     }
 };
 
-function updateTimer(params) {
+function updateTimer() {
     const currentTime = Date.now();
+    hangmangame.currentTime = currentTime;
     const elapsedTime = Math.floor((currentTime - startTimer) / 1000); // Calcular el tiempo transcurrido en segundos
     const timer = document.querySelector('.timer')
     timer.textContent = elapsedTime;
@@ -79,7 +82,7 @@ function updateTimer(params) {
         // result.showMessageIfPlayerRunOutOfTime();
     }
 }
-function stopTimer(params) {
+function stopTimer() {
     clearInterval(timerInterval);
 }
 
@@ -88,4 +91,18 @@ function changeColorLetter(isLetterCorrect, letter) {
         keyboard.showCorrect(letter);
     } else keyboard.showIncorrect(letter);
 };
+
+// save and load game buttons
+const saveButton = document.getElementById('saveButton');
+const loadButton = document.getElementById('loadButton');
+
+// save and load game events 
+saveButton.addEventListener('click', () => {
+    hangmangame.saveGame();
+});
+
+loadButton.addEventListener('click', () => {
+    hangmangame.loadGame();
+});
+
 
