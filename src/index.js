@@ -42,7 +42,6 @@ function handlerLetterClick(button) {
     if (isLetterCorrect) {
         button.disabled = true;
         const newStatus = hangmangame.getStatus(letter);
-        console.log('new Status HAHAHAH:', newStatus);
         panel.updatePanel(newStatus)
         let resultChecked = hangmangame.checkIfPlayerWin(letter);
         if (resultChecked) {
