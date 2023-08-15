@@ -38,6 +38,7 @@ function handlerLetterClick(button) {
     changeColorLetter(isLetterCorrect, letter);
     if (!startTimer) {
         startTimer = Date.now();
+        hangmangame.startTime = startTimer;
         timerInterval = setInterval(updateTimer, 1000);
     }
     if (isLetterCorrect) {

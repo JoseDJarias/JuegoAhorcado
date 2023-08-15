@@ -16,7 +16,8 @@ class HangmanGame {
         this.remainingGuesses = 7 - this.incorrectGuesses;
         this.selectedLetters = [];
         this.elapsedTime = 0;
-
+        this.currentTime= 0;
+        this.startTime= 0;
 
     }
 
