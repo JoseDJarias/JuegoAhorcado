@@ -1,11 +1,13 @@
 import { Keyboard } from "./Keyboard.js";
 import { Panel } from "./PanelClass.js";
 import { Result } from "./ResultClass.js";
+import { PokeApi } from "../api/pokemon-api.js";
 
 class HangmanGame {
     constructor() {
-        this.wordsArray = ['javascript', 'coding', 'trello'];
-        this.selectedWord = this.wordsArray[Math.floor(Math.random() * this.wordsArray.length)];
+        // this.wordsArray = ['javascript', 'coding', 'trello'];
+        // this.selectedWord = this.wordsArray[Math.floor(Math.random() * this.wordsArray.length)];
+        this.selectedWord = '';
         this.textArray = [];
         this.newTextArray = [];
         this.keyboard = new Keyboard();
@@ -18,15 +20,28 @@ class HangmanGame {
         this.elapsedTime = 0;
         this.currentTime= 0;
         this.startTime= 0;
+        this.pokeApi = new PokeApi();
+        this.data = new Object();
+        this.imagePoke = document.createElement('img');
+        
 
     }
-
-    startGame() {
+   
+    async startGame() {
         this.swalAlert();
         this.keyboard.createKeyboard();
-        this.panel.createPanel(this.selectedWord);
         this.panel.createHeartIcons();
         this.fillArrayLength();
+        this.data = await this.pokeApi.getPokemonAsync(this.pokeApi.number);
+        this.selectedWord = this.data.name;
+        console.log(this.data.sprites.other["official-artwork"]["front_default"]);
+        console.log(this.data.sprites.other["official-artwork"]["front_shiny"]);
+        this.panel.createPanel(this.selectedWord);
+        console.log( this.data);
+        console.log(this.data.name,'palabra');
+        // this.pokeApi.fetchRandomPokemonId();
+        
+
     }
 
     checkLetter(letter) {
@@ -48,7 +63,7 @@ class HangmanGame {
 
     getStatus(letter) {
         let text = this.selectedWord;
-        this.newTextArray = text.split("")
+        this.newTextArray = text.split("");
         let lowerLetter = letter.toLowerCase();
         for (let index = 0; index < text.length; index++) {
             if (lowerLetter === this.newTextArray[index]) {
