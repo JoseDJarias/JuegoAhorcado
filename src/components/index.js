@@ -77,7 +77,7 @@ function updateTimer() {
     const elapsedTime = Math.floor((currentTime - startTimer) / 1000); // Calcular el tiempo transcurrido en segundos
     const timer = document.querySelector('.timer')
     timer.textContent = elapsedTime;
-    if (elapsedTime > 60) {
+    if (elapsedTime > 59) {
         stopTimer();
         result.showMessageIfPlayerRunOutOfTime();
     }
