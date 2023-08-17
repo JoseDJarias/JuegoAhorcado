@@ -39,16 +39,20 @@ class HangmanGame {
         this.panel.createHeartIcons();
         this.fillArrayLength();
         this.data = await this.initializePokeApiData();
-        // this.selectedWord = this.data.name;
+        this.panel.createPanel(this.selectedWord);
+        
+        this.asyncTest();
+
+
+
+    }
+    
+    asyncTest(){
         console.log('After initialization', this.selectedWord);
         console.log(this.data.sprites.other["official-artwork"]["front_default"]);
         console.log(this.data.sprites.other["official-artwork"]["front_shiny"]);
-        this.panel.createPanel(this.selectedWord);
         console.log(this.data);
         console.log(this.data.name, 'palabra');
-        // this.pokeApi.fetchRandomPokemonId();
-
-
     }
 
     checkLetter(letter) {
