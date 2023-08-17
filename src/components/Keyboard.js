@@ -33,6 +33,6 @@ class Keyboard {
     }
 
 
-}
+};
 
 export { Keyboard };

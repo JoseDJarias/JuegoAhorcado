@@ -44,8 +44,9 @@ function handlerLetterClick(button) {
     if (isLetterCorrect) {
         button.disabled = true;
         const newStatus = hangmangame.getStatus(letter);
-        panel.updatePanel(newStatus)
+        panel.updatePanel(newStatus);
         let resultChecked = hangmangame.checkIfPlayerWin(letter);
+        console.log('Ver que diablos esta pasando:',resultChecked);
         if (resultChecked) {
             stopTimer();
             result.showResult(true, hangmangame.selectedWord)

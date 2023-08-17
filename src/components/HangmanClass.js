@@ -37,14 +37,11 @@ class HangmanGame {
         this.swalAlert();
         this.keyboard.createKeyboard();
         this.panel.createHeartIcons();
-        this.fillArrayLength();
         this.data = await this.initializePokeApiData();
+        this.fillArrayLength();
         this.panel.createPanel(this.selectedWord);
         
         this.asyncTest();
-
-
-
     }
     
     asyncTest(){
