@@ -18,29 +18,36 @@ class HangmanGame {
         this.remainingGuesses = 7 - this.incorrectGuesses;
         this.selectedLetters = [];
         this.elapsedTime = 0;
-        this.currentTime= 0;
-        this.startTime= 0;
+        this.currentTime = 0;
+        this.startTime = 0;
         this.pokeApi = new PokeApi();
         this.data = new Object();
         this.imagePoke = document.createElement('img');
-        
+
 
     }
-   
+    // poke-api  data
+    async initializePokeApiData() {
+        this.data = await this.pokeApi.getPokemonAsync(this.pokeApi.number);
+        this.selectedWord = this.data.name
+        return this.data;
+    }
+
     async startGame() {
         this.swalAlert();
         this.keyboard.createKeyboard();
         this.panel.createHeartIcons();
         this.fillArrayLength();
-        this.data = await this.pokeApi.getPokemonAsync(this.pokeApi.number);
-        this.selectedWord = this.data.name;
+        this.data = await this.initializePokeApiData();
+        // this.selectedWord = this.data.name;
+        console.log('After initialization', this.selectedWord);
         console.log(this.data.sprites.other["official-artwork"]["front_default"]);
         console.log(this.data.sprites.other["official-artwork"]["front_shiny"]);
         this.panel.createPanel(this.selectedWord);
-        console.log( this.data);
-        console.log(this.data.name,'palabra');
+        console.log(this.data);
+        console.log(this.data.name, 'palabra');
         // this.pokeApi.fetchRandomPokemonId();
-        
+
 
     }
 
@@ -191,10 +198,10 @@ class HangmanGame {
         });
     }
     updateElapsedTime() {
-        let  timerInterval = setInterval(this.updateTimer(this.elapsedTime), 1000);
+        let timerInterval = setInterval(this.updateTimer(this.elapsedTime), 1000);
     }
-     updateTimer(elapsedTime) {
-        console.log('Que vergas de params me llega: ',elapsedTime);
+    updateTimer(elapsedTime) {
+        console.log('Que vergas de params me llega: ', elapsedTime);
         const timer = document.querySelector('.timer')
         timer.textContent = elapsedTime;
         if (elapsedTime > 60) {
