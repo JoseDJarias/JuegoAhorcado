@@ -2,13 +2,22 @@ Pistas;
 Si se le muestra la imagen quita puntos, si falla quitan puntos, 
 
 Sistema de puntuacion: 
-Inicia con 100 puntos, por mostrar la imagen se le puede bajar 20 puntos
+Inicia con 100 puntos
 
-Si falla desde el intento 1 al 4 se le rebajan 7 punto; del 4 al 6 se le bajan 15 puntos;
+Apartado de amonestaciones:
+-Por mostrar la pista de la por primera vez imagen se le puede bajar 10 puntos;
+-La segunda se le bajan 15 puntos
+-Si falla desde el intento 1 al 4 se le rebajan 4 puntos, del 4 al 6 se le bajan 9 puntos;
+Si lo termina en los ultimos 10 segundos se le rebaja 7 puntos;
+-Hasta el momento la puntuacion mas baja posible seria 22 puntos;
 
-Hasta el momento la puntuacion mas baja posible seria 18 puntos;
+
+(En debate si se aplica, por el momento no)Apartado de Aumento de puntos:
+
+Si (!A && !B) se le suben 200 puntos;
+A-Si acierta todas las palabras sin ningun fallo tiene 100 puntos;
+B-Si gana sin utilizar pistas 50 puntos;
 
 
-Cuando el jugador alla perdido o ganado mostrar la imagen del pokemon(quitarle el filtro);
-
-Cuando el jugador alla perdido o ganado en el lugar donde las imagenes del ahorcado podriamos mostrar una pokedex
+-Cuando el jugador haya perdido o ganado mostrar la imagen del pokemon(quitarle el filtro);
+-Cuando el jugador haya perdido o ganado en el lugar donde las imagenes del ahorcado podriamos mostrar una pokedex;

@@ -22,14 +22,16 @@ class HangmanGame {
         this.startTime = 0;
         this.pokeApi = new PokeApi();
         this.data = new Object();
-        this.imagePoke = document.createElement('img');
-
+        this.pokeImage =  document.createElement('img');
+        this.pokeImageContainer = document.querySelector('.image-pokeapi-container');
+        this.buttonImageClue = document.querySelector('.imageClue-button');
+        this.clueFlag = false;
 
     }
     // poke-api  data
     async initializePokeApiData() {
         this.data = await this.pokeApi.getPokemonAsync(this.pokeApi.number);
-        this.selectedWord = this.data.name
+        this.selectedWord = this.data.name;
         return this.data;
     }
 
@@ -40,9 +42,9 @@ class HangmanGame {
         this.data = await this.initializePokeApiData();
         this.fillArrayLength();
         this.panel.createPanel(this.selectedWord);
-        
+
         this.asyncTest();
-    }
+    };
     
     asyncTest(){
         console.log('After initialization', this.selectedWord);
@@ -51,6 +53,55 @@ class HangmanGame {
         console.log(this.data);
         console.log(this.data.name, 'palabra');
     }
+    // Clue ----------------------------------------------------------------------------
+    
+    createImageClue(number,state){
+        this.pokeImageContainer.style.height = '300px';
+        this.pokeImage.style.width = '300px';
+        this.pokeImage.src = this.data.sprites.other["official-artwork"]["front_shiny"];
+        this.pokeImage.style.filter = `brightness(${number})`
+        this.pokeImageContainer.appendChild(this.pokeImage);
+        this.buttonImageClue.textContent = 'Presiona para otra pista';
+        if (state) {
+            // this.buttonImageClue.style.visibility = 'hidden';
+            // this.buttonImageClue.style.width = '0';
+            // this.buttonImageClue.style.height = '0';
+            this.buttonImageClue.disabled = true;
+        };
+    }
+
+    createButtonImageEvent(){
+        
+        this.buttonImageClueStyle();
+        this.buttonImageClue.addEventListener('click',()=>{
+            console.log(this.clueFlag);
+            if (!this.clueFlag) {
+                this.clueFlag = true;
+                console.log('entro al if');
+                this.createImageClue(0,false)
+            }else{
+                this.createImageClue(0.3,true);
+                console.log('entro en el else');
+            }
+        });
+        
+    };
+
+    buttonImageClueStyle(){
+        this.buttonImageClue.style.height ='110px';
+        this.buttonImageClue.style.width ='100px';
+        this.buttonImageClue.style.borderRadius = '20px';
+        this.buttonImageClue.style.border = '1px solid red';
+        
+    }
+    // Clue ----------------------------------------------------------------------------
+    
+    // Points --------------------------------------------------------------------------
+
+
+    // Points --------------------------------------------------------------------------
+
+
 
     checkLetter(letter) {
         console.log('checkletterword: ', this.selectedWord);

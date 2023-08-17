@@ -268,7 +268,9 @@ header {
     visibility: hidden;
     height: 0;
     width: 0;
-}
+};
+
+/* poke image*/
 
 
 @media (min-width: 780px) {

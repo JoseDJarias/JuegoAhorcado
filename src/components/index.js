@@ -3,6 +3,8 @@ import { Keyboard } from "./Keyboard.js";
 import { Result } from "./ResultClass.js";
 import { BodyParts } from "./BodyPartClass.js";
 import { HangmanGame } from "./HangmanClass.js";
+import { Points } from "./PointsClass.js";
+import { PokeApi } from "../api/pokemon-api.js";
 
 // instance hangmangame
 let hangmangame = new HangmanGame();
@@ -15,12 +17,20 @@ let keyboard = new Keyboard();
 let result = new Result();
 // instance bodyparts class
 let bodyparts = new BodyParts();
+// instance points class
+let points = new Points();
+// instance poke api
+let pokeApi = new PokeApi();
 
 // timer
 let startTimer;
 let timerInterval;
 
+
 hangmangame.startGame();
+
+hangmangame.createButtonImageEvent();
+
 
 /* Select all the keyboard buttons and foreach one a event click
  wich call a function */
