@@ -25,6 +25,9 @@ let pokeApi = new PokeApi();
 // timer
 let startTimer;
 let timerInterval;
+let buttonGiveLetter = document.querySelector('.giveLetter-button');
+buttonGiveLetter.disabled = true;
+
 
 
 hangmangame.startGame();
@@ -41,6 +44,7 @@ button.forEach((button) => {
     });
 });
 
+
 function handlerLetterClick(button) {
     result.removeInitialAlert();
     let letter = button.textContent;
@@ -51,16 +55,29 @@ function handlerLetterClick(button) {
         hangmangame.startTime = startTimer;
         timerInterval = setInterval(updateTimer, 1000);
     }
+
+    const newStatus = hangmangame.getStatus(letter);
+    console.log('Holaaaaaa',newStatus);
+
+    buttonGiveLetter.disabled = false;
+    buttonGiveLetter.addEventListener('click',() =>{
+        let random = hangmangame.getRandomNumber(newStatus);
+        let selectedWordArray = hangmangame.selectedWord.split('');
+        console.log('newS:',newStatus);
+        if (newStatus[random] === '_') {
+            newStatus[random] = selectedWordArray[random];        
+          resultCheckedAndStopTimer(letter,newStatus);
+            
+        };
+        
+    });
+    
+    
     if (isLetterCorrect) {
         button.disabled = true;
-        const newStatus = hangmangame.getStatus(letter);
         panel.updatePanel(newStatus);
-        let resultChecked = hangmangame.checkIfPlayerWin(letter);
-        console.log('Ver que diablos esta pasando:',resultChecked);
-        if (resultChecked) {
-            stopTimer();
-            result.showResult(true, hangmangame.selectedWord)
-        }
+        resultCheckedAndStopTimer(letter,newStatus);
+
     }
     if (!isLetterCorrect) {
         button.disabled = true;
@@ -102,6 +119,16 @@ function changeColorLetter(isLetterCorrect, letter) {
         keyboard.showCorrect(letter);
     } else keyboard.showIncorrect(letter);
 };
+
+function resultCheckedAndStopTimer(letter,newStatus) {
+    panel.updatePanel(newStatus);
+    let resultChecked = hangmangame.checkIfPlayerWin(letter);
+    if (resultChecked) {
+        stopTimer();
+        result.showResult(true, hangmangame.selectedWord)
+    }
+};
+
 
 // save and load game buttons
 const saveButton = document.getElementById('saveButton');

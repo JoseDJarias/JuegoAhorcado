@@ -22,10 +22,12 @@ class HangmanGame {
         this.startTime = 0;
         this.pokeApi = new PokeApi();
         this.data = new Object();
-        this.pokeImage =  document.createElement('img');
+        this.pokeImage = document.createElement('img');
         this.pokeImageContainer = document.querySelector('.image-pokeapi-container');
         this.buttonImageClue = document.querySelector('.imageClue-button');
+        this.buttonGiveLetter = document.querySelector('.giveLetter-button');
         this.clueFlag = false;
+        this.clueFlag1 = false;
 
     }
     // poke-api  data
@@ -45,17 +47,18 @@ class HangmanGame {
 
         this.asyncTest();
     };
-    
-    asyncTest(){
-        console.log('After initialization', this.selectedWord);
-        console.log(this.data.sprites.other["official-artwork"]["front_default"]);
-        console.log(this.data.sprites.other["official-artwork"]["front_shiny"]);
-        console.log(this.data);
-        console.log(this.data.name, 'palabra');
+
+    asyncTest() {
+        // console.log('After initialization', this.selectedWord);
+        // console.log(this.data.sprites.other["official-artwork"]["front_default"]);
+        // console.log(this.data.sprites.other["official-artwork"]["front_shiny"]);
+        // console.log(this.data);
+        // console.log(this.data.name, 'palabra');
     }
     // Clue ----------------------------------------------------------------------------
-    
-    createImageClue(number,state){
+
+    // clue with image
+    createImageClue(number, state) {
         this.pokeImageContainer.style.height = '300px';
         this.pokeImage.style.width = '300px';
         this.pokeImage.src = this.data.sprites.other["official-artwork"]["front_shiny"];
@@ -63,39 +66,49 @@ class HangmanGame {
         this.pokeImageContainer.appendChild(this.pokeImage);
         this.buttonImageClue.textContent = 'Presiona para otra pista';
         if (state) {
-            // this.buttonImageClue.style.visibility = 'hidden';
-            // this.buttonImageClue.style.width = '0';
-            // this.buttonImageClue.style.height = '0';
             this.buttonImageClue.disabled = true;
         };
     }
 
-    createButtonImageEvent(){
-        
+    createButtonImageEvent() {
+
         this.buttonImageClueStyle();
-        this.buttonImageClue.addEventListener('click',()=>{
+        this.buttonImageClue.addEventListener('click', () => {
             console.log(this.clueFlag);
-            if (!this.clueFlag) {
+            if (!this.clueFlag && !this.clueFlag1) {
                 this.clueFlag = true;
                 console.log('entro al if');
-                this.createImageClue(0,false)
-            }else{
-                this.createImageClue(0.3,true);
-                console.log('entro en el else');
+                this.createImageClue(0, false)
+            } else if (this.clueFlag) {
+                this.clueFlag = false;
+                this.clueFlag1 = true;
+                this.createImageClue(0.3, false);
+                console.log('entro en el else if')
+            } else if (this.clueFlag1) {
+                console.log('entro en el else if 2')
+                this.createImageClue(0.6, true);
             }
         });
-        
+
     };
 
-    buttonImageClueStyle(){
-        this.buttonImageClue.style.height ='110px';
-        this.buttonImageClue.style.width ='100px';
+    buttonImageClueStyle() {
+        this.buttonImageClue.style.height = '110px';
+        this.buttonImageClue.style.width = '100px';
         this.buttonImageClue.style.borderRadius = '20px';
         this.buttonImageClue.style.border = '1px solid red';
-        
+    };
+    // Clue image
+
+
+    getRandomNumber(array){
+       let random = Math.floor(Math.random()* (array.length -0),0);
+        return random
     }
-    // Clue ----------------------------------------------------------------------------
     
+
+    // Clue ----------------------------------------------------------------------------
+
     // Points --------------------------------------------------------------------------
 
 
@@ -130,7 +143,6 @@ class HangmanGame {
             }
         }
         this.guessedWord = this.textArray;
-        console.log(this.guessedWord, 'Palabra adivinada');
         return this.textArray;
     }
 

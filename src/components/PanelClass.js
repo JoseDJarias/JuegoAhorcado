@@ -45,12 +45,10 @@ class Panel {
     updatePanel(array) {
         let lowbar = document.querySelectorAll('.lowbar-style');
         let newLowBars = Array.from(lowbar);
-        console.log('New Array', newLowBars);
         for (let index = 0; index < array.length; index++) {
             newLowBars[index].textContent = array[index]
         }
-    }
-
+    };
 
 }
 
