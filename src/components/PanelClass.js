@@ -30,7 +30,6 @@ class Panel {
         const lives = document.querySelector('.lives')
         lives.innerHTML = '';
         const totalIcons = 7 - attemps
-        console.log('Heart total', totalIcons);
         for (let index = 0; index < totalIcons; index++) {
             let icons = document.createElement('img');
             icons.src = '../assets/images/emoticonos.png';

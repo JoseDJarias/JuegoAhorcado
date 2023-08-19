@@ -55,72 +55,12 @@ class HangmanGame {
         // console.log(this.data);
         // console.log(this.data.name, 'palabra');
     }
-    // Clue ----------------------------------------------------------------------------
-
-    // clue with image
-    createImageClue(number, state) {
-        this.pokeImageContainer.style.height = '300px';
-        this.pokeImage.style.width = '300px';
-        this.pokeImage.src = this.data.sprites.other["official-artwork"]["front_shiny"];
-        this.pokeImage.style.filter = `brightness(${number})`
-        this.pokeImageContainer.appendChild(this.pokeImage);
-        this.buttonImageClue.textContent = 'Presiona para otra pista';
-        if (state) {
-            this.buttonImageClue.disabled = true;
-        };
-    }
-
-    createButtonImageEvent() {
-
-        this.buttonImageClueStyle();
-        this.buttonImageClue.addEventListener('click', () => {
-            console.log(this.clueFlag);
-            if (!this.clueFlag && !this.clueFlag1) {
-                this.clueFlag = true;
-                console.log('entro al if');
-                this.createImageClue(0, false)
-            } else if (this.clueFlag) {
-                this.clueFlag = false;
-                this.clueFlag1 = true;
-                this.createImageClue(0.3, false);
-                console.log('entro en el else if')
-            } else if (this.clueFlag1) {
-                console.log('entro en el else if 2')
-                this.createImageClue(0.6, true);
-            }
-        });
-
-    };
-
-    buttonImageClueStyle() {
-        this.buttonImageClue.style.height = '110px';
-        this.buttonImageClue.style.width = '100px';
-        this.buttonImageClue.style.borderRadius = '20px';
-        this.buttonImageClue.style.border = '1px solid red';
-    };
-    // Clue image
-
-
-    getRandomNumber(array){
-       let random = Math.floor(Math.random()* (array.length -0),0);
-        return random
-    }
-    
-
-    // Clue ----------------------------------------------------------------------------
-
-    // Points --------------------------------------------------------------------------
-
-
-    // Points --------------------------------------------------------------------------
-
 
 
     checkLetter(letter) {
-        console.log('checkletterword: ', this.selectedWord);
+        console.log('Letra a jugar : ', this.selectedWord);
         let str = letter.toLowerCase();
         let position = this.selectedWord.search(str);
-        console.log('position: ', position);
         this.selectedLetters.push(str);
         if (position >= 0) {
             return true;
@@ -165,7 +105,7 @@ class HangmanGame {
         }
         return false
     }
-
+    /*-------------------First Alert when the game start-------------------*/
     swalAlert() {
         Swal.fire({
             title: 'Al presionar el primer boton del teclado, inicia el cronometro \n Recuerda, tienes solo 60 segundos',
@@ -182,7 +122,83 @@ class HangmanGame {
         })
     };
 
-    /*new functionality  //////////////////////////////////////////////////////////////////*/
+    // -------------------------------Clue ----------------------------------------------
+
+    // clue with image
+    createImageClue(number, state) {
+        this.pokeImageContainer.style.height = '300px';
+        this.pokeImage.style.width = '300px';
+        this.pokeImage.src = this.data.sprites.other["official-artwork"]["front_shiny"];
+        this.pokeImage.style.filter = `brightness(${number})`
+        this.pokeImageContainer.appendChild(this.pokeImage);
+        this.buttonImageClue.textContent = 'Presiona para otra pista';
+        if (state) {
+            this.buttonImageClue.disabled = true;
+        };
+    }
+    // event in the button
+    createButtonImageEvent() {
+
+        this.buttonImageClueStyle();
+        this.buttonImageClue.addEventListener('click', () => {
+            console.log(this.clueFlag);
+            if (!this.clueFlag && !this.clueFlag1) {
+                this.clueFlag = true;
+                console.log('entro al if');
+                this.createImageClue(0, false)
+            } else if (this.clueFlag) {
+                this.clueFlag = false;
+                this.clueFlag1 = true;
+                this.createImageClue(0.3, false);
+                console.log('entro en el else if')
+            } else if (this.clueFlag1) {
+                console.log('entro en el else if 2')
+                this.createImageClue(0.6, true);
+            }
+        });
+
+    };
+
+    buttonImageClueStyle() {
+        this.buttonImageClue.style.height = '50px';
+        this.buttonImageClue.style.width = '150px';
+        this.buttonImageClue.style.borderRadius = '20px';
+        this.buttonImageClue.style.border = '1px solid red';
+    };
+
+    // clue reveal Letter to  the player
+    getRandomNumber(array) {
+        const emptyIndex = [];
+        for (let i = 0; i < array.length; i++) {
+            if (array[i] === "_") {
+                emptyIndex.push(i);
+            }
+        }
+
+        // Verifica si no hay posiciones vacías
+        if (emptyIndex.length === 0) {
+            console.log("No hay posiciones vacías.");
+            return -1;
+        }
+
+        // Elige un índice aleatorio de las posiciones vacías
+        const randomIndex = Math.floor(Math.random() * emptyIndex.length);
+        return emptyIndex[randomIndex];
+    }
+
+
+    // -------------------------------Clue ----------------------------------------------
+
+    // Points --------------------------------------------------------------------------
+
+
+    // Points --------------------------------------------------------------------------
+
+
+
+
+
+    /*----------------------Save and load the game------------------------*/
     saveElapsedTime() {
         const timer = parseInt(document.querySelector('.timer').textContent)
         console.log(timer);

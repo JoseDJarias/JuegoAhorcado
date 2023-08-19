@@ -28,6 +28,15 @@ let timerInterval;
 let buttonGiveLetter = document.querySelector('.giveLetter-button');
 buttonGiveLetter.disabled = true;
 
+// accordion event
+const accordionHeaders = document.querySelectorAll('.accordion-header');
+
+accordionHeaders.forEach((header) => {
+    header.addEventListener('click', function () {
+        const accordionContent = this.nextElementSibling;
+        accordionContent.style.display = (accordionContent.style.display === 'block') ? 'none' : 'block';
+    });
+});
 
 
 hangmangame.startGame();
@@ -57,33 +66,31 @@ function handlerLetterClick(button) {
     }
 
     const newStatus = hangmangame.getStatus(letter);
-    console.log('Holaaaaaa',newStatus);
+    console.log('Nuevo status: ', newStatus);
 
     buttonGiveLetter.disabled = false;
-    buttonGiveLetter.addEventListener('click',() =>{
+    buttonGiveLetter.addEventListener('click', () => {
         let random = hangmangame.getRandomNumber(newStatus);
         let selectedWordArray = hangmangame.selectedWord.split('');
-        console.log('newS:',newStatus);
-        if (newStatus[random] === '_') {
-            newStatus[random] = selectedWordArray[random];        
-          resultCheckedAndStopTimer(letter,newStatus);
-            
+        if (random !== -1) {
+            newStatus[random] = selectedWordArray[random];
+            resultCheckedAndStopTimer(letter, newStatus);
         };
-        
+
     });
-    
-    
+
+
     if (isLetterCorrect) {
         button.disabled = true;
         panel.updatePanel(newStatus);
-        resultCheckedAndStopTimer(letter,newStatus);
+        resultCheckedAndStopTimer(letter, newStatus);
 
     }
     if (!isLetterCorrect) {
         button.disabled = true;
         let attemps = parseInt(document.querySelector('.attemps-counter').textContent);
         bodyparts.updateImg(attemps);
-        attemps++;  
+        attemps++;
         panel.updateHeartIcons(attemps);
         console.log('Intentos', attemps);
         document.querySelector('.attemps-counter').textContent = attemps;
@@ -120,7 +127,7 @@ function changeColorLetter(isLetterCorrect, letter) {
     } else keyboard.showIncorrect(letter);
 };
 
-function resultCheckedAndStopTimer(letter,newStatus) {
+function resultCheckedAndStopTimer(letter, newStatus) {
     panel.updatePanel(newStatus);
     let resultChecked = hangmangame.checkIfPlayerWin(letter);
     if (resultChecked) {

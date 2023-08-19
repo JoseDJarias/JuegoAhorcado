@@ -116,6 +116,41 @@ header {
 
 /* icons */
 
+
+.giveLetter-button{
+    height: 50px;
+    width: 150px;
+    border: 1px solid red;
+    border-radius: 20px;
+}
+
+/* acordion */
+.accordion {
+    width: 200px;
+    height: fit-content;
+    margin-bottom: 10px;
+  }
+  
+  .accordion-header {
+    display: flex;
+    justify-content: center;
+    width: 150px;
+    background-color: #f1f1f1;
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  .accordion-content {
+    display: none;
+    padding: 10px;
+  }
+  
+  .accordion-content button {
+    display: block;
+    margin-bottom: 5px;
+  }
+/* acordion */
+
 /* styles for the message div and buttons */
 .message,
 .initial-message {
