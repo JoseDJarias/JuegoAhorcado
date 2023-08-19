@@ -28,17 +28,6 @@ let timerInterval;
 let buttonGiveLetter = document.querySelector('.giveLetter-button');
 buttonGiveLetter.disabled = true;
 
-// accordion event
-const accordionHeaders = document.querySelectorAll('.accordion-header');
-
-accordionHeaders.forEach((header) => {
-    header.addEventListener('click', function () {
-        const accordionContent = this.nextElementSibling;
-        accordionContent.style.display = (accordionContent.style.display === 'block') ? 'none' : 'block';
-    });
-});
-
-
 hangmangame.startGame();
 
 hangmangame.createButtonImageEvent();
@@ -106,6 +95,16 @@ function handlerLetterClick(button) {
 
     }
 };
+
+// accordion event
+const accordionHeaders = document.querySelectorAll('.accordion-header');
+
+accordionHeaders.forEach((header) => {
+    header.addEventListener('click', function () {
+        const accordionContent = this.nextElementSibling;
+        accordionContent.style.display = (accordionContent.style.display === 'block') ? 'none' : 'block';
+    });
+});
 
 function updateTimer() {
     const currentTime = Date.now();

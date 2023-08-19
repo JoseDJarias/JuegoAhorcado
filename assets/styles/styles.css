@@ -117,12 +117,13 @@ header {
 /* icons */
 
 
-.giveLetter-button{
+.giveLetter-button,.giveType-button,.giveAbility-button{
     height: 50px;
     width: 150px;
     border: 1px solid red;
     border-radius: 20px;
-}
+};
+
 
 /* acordion */
 .accordion {

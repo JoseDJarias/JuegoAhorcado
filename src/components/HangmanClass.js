@@ -42,6 +42,7 @@ class HangmanGame {
         this.keyboard.createKeyboard();
         this.panel.createHeartIcons();
         this.data = await this.initializePokeApiData();
+        console.log(this.data);
         this.fillArrayLength();
         this.panel.createPanel(this.selectedWord);
 
