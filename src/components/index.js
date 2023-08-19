@@ -29,8 +29,10 @@ let buttonGiveLetter = document.querySelector('.giveLetter-button');
 buttonGiveLetter.disabled = true;
 
 hangmangame.startGame();
-
-hangmangame.createButtonImageEvent();
+hangmangame.startClues();
+// hangmangame.createButtonImageEvent();
+// hangmangame.giveTypeClue();
+// hangmangame.giveAbilityClue();
 
 
 /* Select all the keyboard buttons and foreach one a event click
@@ -45,6 +47,7 @@ button.forEach((button) => {
 
 function handlerLetterClick(button) {
     result.removeInitialAlert();
+    activarAcordion(true);
     let letter = button.textContent;
     const isLetterCorrect = hangmangame.checkLetter(letter);
     changeColorLetter(isLetterCorrect, letter);
@@ -98,13 +101,22 @@ function handlerLetterClick(button) {
 
 // accordion event
 const accordionHeaders = document.querySelectorAll('.accordion-header');
+const accordion = document.querySelector('.accordion-header');
 
-accordionHeaders.forEach((header) => {
-    header.addEventListener('click', function () {
-        const accordionContent = this.nextElementSibling;
-        accordionContent.style.display = (accordionContent.style.display === 'block') ? 'none' : 'block';
+accordion.style.cursor= 'not-allowed';
+function activarAcordion(alert) { 
+    accordion.style.cursor= 'pointer';
+ 
+    accordionHeaders.forEach((header) => {
+        header.addEventListener('click', function () {
+            if (alert) {
+                const accordionContent = this.nextElementSibling;
+                accordionContent.style.display = (accordionContent.style.display === 'block') ? 'none' : 'block';
+            }
+        });
     });
-});
+};
+
 
 function updateTimer() {
     const currentTime = Date.now();

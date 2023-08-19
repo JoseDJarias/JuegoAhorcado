@@ -117,7 +117,7 @@ header {
 /* icons */
 
 
-.giveLetter-button,.giveType-button,.giveAbility-button{
+.giveLetter-button,.giveType-button,.giveAbility-button,.giveSpecie-button{
     height: 50px;
     width: 150px;
     border: 1px solid red;
@@ -126,6 +126,9 @@ header {
 
 
 /* acordion */
+.pointer-notAllowed{
+    cursor: not-allowed;
+}
 .accordion {
     width: 200px;
     height: fit-content;

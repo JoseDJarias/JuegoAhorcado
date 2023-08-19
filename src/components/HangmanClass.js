@@ -28,6 +28,9 @@ class HangmanGame {
         this.buttonGiveLetter = document.querySelector('.giveLetter-button');
         this.clueFlag = false;
         this.clueFlag1 = false;
+        this.giveAbilityButton = document.querySelector('.giveAbility-button');
+        this.giveTypeButton = document.querySelector('.giveType-button');
+        this.giveSpecieButton = document.querySelector('.giveSpecie-button');
 
     }
     // poke-api  data
@@ -106,24 +109,37 @@ class HangmanGame {
         }
         return false
     }
-    /*-------------------First Alert when the game start-------------------*/
-    swalAlert() {
-        Swal.fire({
-            title: 'Al presionar el primer boton del teclado, inicia el cronometro \n Recuerda, tienes solo 60 segundos',
-            width: 600,
-            padding: '3em',
-            color: '#716add',
-            background: '#fff url(https://sweetalert2.github.io/images/trees.png)',
-            backdrop: `
-            rgba(0,0,123,0.4)
-            url("https://sweetalert2.github.io/images/nyan-cat.gif")
-            left top
-            no-repeat
-            `
+
+    // -------------------------------Clue ----------------------------------------------
+    startClues() {
+        this.createButtonImageEvent();
+        this.giveTypeClue();
+        this.giveAbilityClue();
+        this.giveSpecieClue();
+    };
+
+    giveTypeClue() {
+        this.giveTypeButton.addEventListener('click', () => {
+            alert((this.data.types['0']['type']['name']));
+            this.giveTypeButton.disabled = true;
         })
     };
 
-    // -------------------------------Clue ----------------------------------------------
+    giveAbilityClue() {
+        this.giveAbilityButton.addEventListener('click', () => {
+            alert((this.data.abilities[0]['ability']['name']));
+            this.giveAbilityButton.disabled = true;
+        });
+    };
+
+    giveSpecieClue() {
+        this.giveSpecieButton.addEventListener('click', () => {
+            alert((this.data.species['name']));;
+            this.giveSpecieButton.disabled = true;
+        });
+    };
+
+
 
     // clue with image
     createImageClue(number, state) {
@@ -196,7 +212,22 @@ class HangmanGame {
     // Points --------------------------------------------------------------------------
 
 
-
+    /*-------------------First Alert when the game start-------------------*/
+    swalAlert() {
+        Swal.fire({
+            title: 'Al presionar el primer boton del teclado \nInicia el cronometro y empieza el  juego \n Recuerda, tienes solo 60 segundos \n El menu de pistas se activa al iniciar el juego',
+            width: 600,
+            padding: '3em',
+            color: '#716add',
+            background: '#fff url(https://sweetalert2.github.io/images/trees.png)',
+            backdrop: `
+            rgba(0,0,123,0.4)
+            url("https://sweetalert2.github.io/images/nyan-cat.gif")
+            left top
+            no-repeat
+            `
+        })
+    };
 
 
     /*----------------------Save and load the game------------------------*/
