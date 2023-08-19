@@ -30,9 +30,6 @@ buttonGiveLetter.disabled = true;
 
 hangmangame.startGame();
 hangmangame.startClues();
-// hangmangame.createButtonImageEvent();
-// hangmangame.giveTypeClue();
-// hangmangame.giveAbilityClue();
 
 
 /* Select all the keyboard buttons and foreach one a event click
@@ -43,7 +40,6 @@ button.forEach((button) => {
         handlerLetterClick(button);
     });
 });
-
 
 function handlerLetterClick(button) {
     result.removeInitialAlert();
@@ -123,12 +119,14 @@ function updateTimer() {
     const elapsedTime = Math.floor((currentTime - startTimer) / 1000); // Calcular el tiempo transcurrido en segundos
     const timer = document.querySelector('.timer')
     timer.textContent = elapsedTime;
-    if (elapsedTime > 59) {
+    if (elapsedTime > 60) {
         stopTimer();
+        result.disableKeyboard();
         result.showMessageIfPlayerRunOutOfTime();
     }
 }
 function stopTimer() {
+
     clearInterval(timerInterval);
 }
 
