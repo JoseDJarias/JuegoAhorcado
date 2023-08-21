@@ -84,8 +84,8 @@ function handlerLetterClick(button) {
         points.discountPoints(2);
         let resultChecked = hangmangame.checkIfPlayerLost(attemps);
         if (resultChecked) {
-            displayNoneAcordion();
-            buttonGiveLetter.disabled = true;
+            const accordionHeaders = document.querySelector('.buttonImageClue');
+            accordionHeaders.style.display = 'none';
             result.showResult(false, hangmangame.selectedWord)
         }
         if (attemps > 6) {
@@ -108,7 +108,7 @@ function activarAcordion(alert) {
             if (alert) {
                 const accordionContent = this.nextElementSibling;
                 accordionContent.style.display = (accordionContent.style.display === 'block') ? 'none' : 'block';
-            } 
+            }
         });
     });
 };
@@ -119,8 +119,7 @@ function updateTimer() {
     const elapsedTime = Math.floor((currentTime - startTimer) / 1000); // Calcular el tiempo transcurrido en segundos
     const timer = document.querySelector('.timer')
     timer.textContent = elapsedTime;
-    if (elapsedTime > 120) {
-        displayNoneAcordion();
+    if (elapsedTime > 6) {
         result.showMessageIfPlayerRunOutOfTime();
         stopTimer();
         result.disableKeyboard();
@@ -141,18 +140,13 @@ function resultCheckedAndStopTimer(letter, newStatus) {
     panel.updatePanel(newStatus);
     let resultChecked = hangmangame.checkIfPlayerWin(letter);
     if (resultChecked) {
-        displayNoneAcordion();
+        const accordionHeaders = document.querySelector('.buttonImageClue');
+        accordionHeaders.style.display = 'none';
         buttonGiveLetter.disabled = true;
         stopTimer();
         result.showResult(true, hangmangame.selectedWord);
     }
 };
-
-function displayNoneAcordion() {
-    let accordion = document.querySelector('.accordion')
-    const accordionHeaders = document.querySelector('.buttonImageClue');
-    accordionHeaders.style.display = 'none'; 
-}
 
 
 
