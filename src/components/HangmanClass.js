@@ -36,7 +36,7 @@ class HangmanGame {
     }
     // poke-api  data
     async initializePokeApiData() {
-        this.data = await this.pokeApi.getPokemonAsync(122);
+        this.data = await this.pokeApi.getPokemonAsync(this.pokeApi.number);
         this.selectedWord = this.data.name;
         return this.data;
     }
