@@ -6,21 +6,16 @@ class Result {
         this.messageTimeOff = 'Se te ha acabado el tiempo';
         this.messaeInitialAlert = "Al presionar el primer boton del teclado comienza a correr el cronometro. "
         this.messageContainer = document.getElementById('message-container');
+        this.messageContainer.style.visibility = 'hidden'
         this.messageParagraph = document.querySelector('.message-paragraph')
         this.button1 = document.querySelector('.message-btn1')
         this.button1.textContent = 'Presiona Aceptar';
 
     }
-
-
-    removeInitialAlert() {
-        // Oculta la alerta
-        this.messageContainer.className = 'hide-message'
-    }
-
+    
     showResult(isWin, word) {
-        console.log(this.messageContainer);
-        this.messageContainer.className = 'message';
+        this.messageContainer.style.visibility = 'visible';
+        
         this.button1.style.visibility = 'visible';
         this.disableKeyboard();
         if (isWin) {
@@ -37,9 +32,11 @@ class Result {
 
     showMessageIfPlayerRunOutOfTime() {
         this.messageContainer.classList.add('warning')
-        this.messageContainer.className = 'message';
+        this.messageContainer.style.visibility = 'visible';
         this.disableKeyboard();
         this.messageParagraph.innerHTML = this.messageTimeOff + "<br>" + this.messagePlayAgain;
+        let botton = document.querySelector('.buttonImageClue');
+        botton.style.display = 'none';
         this.button1.addEventListener('click', this.button1Handler)
     }
 
@@ -53,6 +50,7 @@ class Result {
     button1Handler() {
         window.location.reload();
     }
+
 
 }
 export { Result };

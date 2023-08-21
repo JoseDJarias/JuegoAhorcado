@@ -2,6 +2,7 @@ import { Keyboard } from "./Keyboard.js";
 import { Panel } from "./PanelClass.js";
 import { Result } from "./ResultClass.js";
 import { PokeApi } from "../api/pokemon-api.js";
+import { Points } from "./PointsClass.js";
 
 class HangmanGame {
     constructor() {
@@ -31,7 +32,7 @@ class HangmanGame {
         this.giveAbilityButton = document.querySelector('.giveAbility-button');
         this.giveTypeButton = document.querySelector('.giveType-button');
         this.giveSpecieButton = document.querySelector('.giveSpecie-button');
-
+        this.points = new Points();
     }
     // poke-api  data
     async initializePokeApiData() {
@@ -120,6 +121,7 @@ class HangmanGame {
 
     giveTypeClue() {
         this.giveTypeButton.addEventListener('click', () => {
+            this.points.discountPoints(5)
             alert((this.data.types['0']['type']['name']));
             this.giveTypeButton.disabled = true;
         })
@@ -127,6 +129,7 @@ class HangmanGame {
 
     giveAbilityClue() {
         this.giveAbilityButton.addEventListener('click', () => {
+            this.points.discountPoints(5)
             alert((this.data.abilities[0]['ability']['name']));
             this.giveAbilityButton.disabled = true;
         });
@@ -134,6 +137,7 @@ class HangmanGame {
 
     giveSpecieClue() {
         this.giveSpecieButton.addEventListener('click', () => {
+            this.points.discountPoints(5)
             alert((this.data.species['name']));;
             this.giveSpecieButton.disabled = true;
         });
@@ -143,8 +147,6 @@ class HangmanGame {
 
     // clue with image
     createImageClue(number, state) {
-        this.pokeImageContainer.style.height = '300px';
-        this.pokeImage.style.width = '300px';
         this.pokeImage.src = this.data.sprites.other["official-artwork"]["front_shiny"];
         this.pokeImage.style.filter = `brightness(${number})`
         this.pokeImageContainer.appendChild(this.pokeImage);
@@ -156,9 +158,9 @@ class HangmanGame {
     // event in the button
     createButtonImageEvent() {
 
-        this.buttonImageClueStyle();
         this.buttonImageClue.addEventListener('click', () => {
             console.log(this.clueFlag);
+            this.points.discountPoints(7)
             if (!this.clueFlag && !this.clueFlag1) {
                 this.clueFlag = true;
                 console.log('entro al if');
@@ -176,12 +178,7 @@ class HangmanGame {
 
     };
 
-    buttonImageClueStyle() {
-        this.buttonImageClue.style.height = '50px';
-        this.buttonImageClue.style.width = '150px';
-        this.buttonImageClue.style.borderRadius = '20px';
-        this.buttonImageClue.style.border = '1px solid red';
-    };
+ 
 
     // clue reveal Letter to  the player
     getRandomNumber(array) {
@@ -206,10 +203,6 @@ class HangmanGame {
 
     // -------------------------------Clue ----------------------------------------------
 
-    // Points --------------------------------------------------------------------------
-
-
-    // Points --------------------------------------------------------------------------
 
 
     /*-------------------First Alert when the game start-------------------*/

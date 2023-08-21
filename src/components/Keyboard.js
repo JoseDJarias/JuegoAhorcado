@@ -13,7 +13,7 @@ class Keyboard {
             this.keyboard.appendChild(div);
             div.className = 'keyboard-div'
             buttons.className = 'keyboard-buttons';
-            this.keyboard.classList.add('keyboard-style');
+            // this.keyboard.classList.add('keyboard-style');
             buttons.setAttribute("data-letter", key);
         });
     };

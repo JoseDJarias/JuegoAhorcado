@@ -25,12 +25,14 @@ let pokeApi = new PokeApi();
 // timer
 let startTimer;
 let timerInterval;
-let buttonGiveLetter = document.querySelector('.giveLetter-button');
-buttonGiveLetter.disabled = true;
+let isTimeOut = false;
+
 
 hangmangame.startGame();
 hangmangame.startClues();
 
+let buttonGiveLetter = document.querySelector('.giveLetter-button');
+buttonGiveLetter.disabled = true;
 
 /* Select all the keyboard buttons and foreach one a event click
  wich call a function */
@@ -40,11 +42,9 @@ button.forEach((button) => {
         handlerLetterClick(button);
     });
 });
-
 function handlerLetterClick(button) {
-    result.removeInitialAlert();
-    activarAcordion(true);
     let letter = button.textContent;
+    activarAcordion(true)
     const isLetterCorrect = hangmangame.checkLetter(letter);
     changeColorLetter(isLetterCorrect, letter);
     if (!startTimer) {
@@ -54,8 +54,7 @@ function handlerLetterClick(button) {
     }
 
     const newStatus = hangmangame.getStatus(letter);
-    console.log('Nuevo status: ', newStatus);
-
+    // clue that show to the player a random (correct)letter in the panel 
     buttonGiveLetter.disabled = false;
     buttonGiveLetter.addEventListener('click', () => {
         let random = hangmangame.getRandomNumber(newStatus);
@@ -64,15 +63,14 @@ function handlerLetterClick(button) {
             newStatus[random] = selectedWordArray[random];
             resultCheckedAndStopTimer(letter, newStatus);
         };
+        points.discountPoints(20);
 
     });
-
 
     if (isLetterCorrect) {
         button.disabled = true;
         panel.updatePanel(newStatus);
         resultCheckedAndStopTimer(letter, newStatus);
-
     }
     if (!isLetterCorrect) {
         button.disabled = true;
@@ -83,8 +81,11 @@ function handlerLetterClick(button) {
         console.log('Intentos', attemps);
         document.querySelector('.attemps-counter').textContent = attemps;
         hangmangame.incorrectGuesses = attemps;
+        points.discountPoints(2);
         let resultChecked = hangmangame.checkIfPlayerLost(attemps);
         if (resultChecked) {
+            displayNoneAcordion();
+            buttonGiveLetter.disabled = true;
             result.showResult(false, hangmangame.selectedWord)
         }
         if (attemps > 6) {
@@ -99,16 +100,15 @@ function handlerLetterClick(button) {
 const accordionHeaders = document.querySelectorAll('.accordion-header');
 const accordion = document.querySelector('.accordion-header');
 
-accordion.style.cursor= 'not-allowed';
-function activarAcordion(alert) { 
-    accordion.style.cursor= 'pointer';
- 
+accordion.style.cursor = 'not-allowed';
+function activarAcordion(alert) {
+    accordion.style.cursor = 'pointer';
     accordionHeaders.forEach((header) => {
         header.addEventListener('click', function () {
             if (alert) {
                 const accordionContent = this.nextElementSibling;
                 accordionContent.style.display = (accordionContent.style.display === 'block') ? 'none' : 'block';
-            }
+            } 
         });
     });
 };
@@ -119,10 +119,11 @@ function updateTimer() {
     const elapsedTime = Math.floor((currentTime - startTimer) / 1000); // Calcular el tiempo transcurrido en segundos
     const timer = document.querySelector('.timer')
     timer.textContent = elapsedTime;
-    if (elapsedTime > 60) {
+    if (elapsedTime > 120) {
+        displayNoneAcordion();
+        result.showMessageIfPlayerRunOutOfTime();
         stopTimer();
         result.disableKeyboard();
-        result.showMessageIfPlayerRunOutOfTime();
     }
 }
 function stopTimer() {
@@ -140,23 +141,33 @@ function resultCheckedAndStopTimer(letter, newStatus) {
     panel.updatePanel(newStatus);
     let resultChecked = hangmangame.checkIfPlayerWin(letter);
     if (resultChecked) {
+        displayNoneAcordion();
+        buttonGiveLetter.disabled = true;
         stopTimer();
-        result.showResult(true, hangmangame.selectedWord)
+        result.showResult(true, hangmangame.selectedWord);
     }
 };
 
+function displayNoneAcordion() {
+    let accordion = document.querySelector('.accordion')
+    const accordionHeaders = document.querySelector('.buttonImageClue');
+    accordionHeaders.style.display = 'none'; 
+}
+
+
+
 
 // save and load game buttons
-const saveButton = document.getElementById('saveButton');
-const loadButton = document.getElementById('loadButton');
+// const saveButton = document.getElementById('saveButton');
+// const loadButton = document.getElementById('loadButton');
 
-// save and load game events 
-saveButton.addEventListener('click', () => {
-    hangmangame.saveGame();
-});
+// // save and load game events
+// saveButton.addEventListener('click', () => {
+//     hangmangame.saveGame();
+// });
 
-loadButton.addEventListener('click', () => {
-    hangmangame.loadGame();
-});
+// loadButton.addEventListener('click', () => {
+//     hangmangame.loadGame();
+// });
 
 
