@@ -36,7 +36,7 @@ class HangmanGame {
     }
     // poke-api  data
     async initializePokeApiData() {
-        this.data = await this.pokeApi.getPokemonAsync(this.pokeApi.number);
+        this.data = await this.pokeApi.getPokemonAsync(122);
         this.selectedWord = this.data.name;
         return this.data;
     }
@@ -82,6 +82,7 @@ class HangmanGame {
         let text = this.selectedWord;
         this.newTextArray = text.split("");
         let lowerLetter = letter.toLowerCase();
+
         for (let index = 0; index < text.length; index++) {
             if (lowerLetter === this.newTextArray[index]) {
                 this.textArray[index] = lowerLetter
@@ -91,9 +92,6 @@ class HangmanGame {
         return this.textArray;
     }
 
-    setStatus() {
-
-    }
 
     checkIfPlayerWin(letter) {
         let textArray = this.getStatus(letter);

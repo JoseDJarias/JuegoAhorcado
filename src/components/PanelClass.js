@@ -42,6 +42,7 @@ class Panel {
     }
 
     updatePanel(array) {
+        console.log('Weyy',array);
         let lowbar = document.querySelectorAll('.lowbar-style');
         let newLowBars = Array.from(lowbar);
         for (let index = 0; index < array.length; index++) {

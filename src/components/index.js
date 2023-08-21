@@ -25,8 +25,6 @@ let pokeApi = new PokeApi();
 // timer
 let startTimer;
 let timerInterval;
-let isTimeOut = false;
-
 
 hangmangame.startGame();
 hangmangame.startClues();
@@ -42,6 +40,8 @@ button.forEach((button) => {
         handlerLetterClick(button);
     });
 });
+
+
 function handlerLetterClick(button) {
     let letter = button.textContent;
     activarAcordion(true)
@@ -113,13 +113,26 @@ function activarAcordion(alert) {
     });
 };
 
+function disableAccordion(){
+    accordion.style.cursor = 'not-allowed' 
+    accordionHeaders.forEach((header) => {
+        header.addEventListener('click', function () {
+            if (alert) {
+                const accordionContent = this.nextElementSibling;
+                accordionContent.style.display = 'block';
+            }
+        });
+    });
+};
+
 
 function updateTimer() {
     const currentTime = Date.now();
     const elapsedTime = Math.floor((currentTime - startTimer) / 1000); // Calcular el tiempo transcurrido en segundos
     const timer = document.querySelector('.timer')
     timer.textContent = elapsedTime;
-    if (elapsedTime > 6) {
+    if (elapsedTime > 120) {
+        disableAccordion();
         result.showMessageIfPlayerRunOutOfTime();
         stopTimer();
         result.disableKeyboard();
@@ -140,6 +153,7 @@ function resultCheckedAndStopTimer(letter, newStatus) {
     panel.updatePanel(newStatus);
     let resultChecked = hangmangame.checkIfPlayerWin(letter);
     if (resultChecked) {
+        console.log('Aquiii',resultChecked);
         const accordionHeaders = document.querySelector('.buttonImageClue');
         accordionHeaders.style.display = 'none';
         buttonGiveLetter.disabled = true;
